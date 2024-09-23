@@ -3,6 +3,9 @@ import userReducer from "../features/userSlice";
 import counterReducer from "../features/counterSlice";
 import todosReducer from "../features/todoSlice";
 import booksReducer from "../features/bookSlice";
+import postsReducer from "../features/postsSlice";
+import weatherReducer from "../features/weatherSlice";
+import githubReducer from "../features/githubSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 
@@ -11,6 +14,9 @@ const reducers = combineReducers({
   counter: counterReducer,
   todos: todosReducer,
   books: booksReducer,
+  posts: postsReducer,
+  weather: weatherReducer,
+  github: githubReducer,
 });
 
 const persistConfig = {
