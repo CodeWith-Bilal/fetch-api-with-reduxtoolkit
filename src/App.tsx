@@ -9,6 +9,10 @@ import ProfilesPage from "./pages/ProfilesPage";
 import BookDetailsPage from "./pages/BookDetailsPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import SettingsPage from "./pages/SettingsPage";
+import PostsPage from "./pages/PostsPage";
+import WeatherPage from "./pages/WeatherPage";
+import GitHubPage from "./pages/GitHubPage";
+import ApiDashboard from "./pages/ApiDashboard";
 export const App = () => {
   return (
     <div
@@ -31,6 +35,10 @@ export const App = () => {
         >
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/posts" element={<PostsPage />} />
+            <Route path="/weather" element={<WeatherPage />} />
+            <Route path="/github" element={<GitHubPage />} />
+            <Route path="/dashboard" element={<ApiDashboard />} />
             <Route path="/books" element={<BooksPage />} />
             <Route path="/todos" element={<TodosPage />} />
             <Route path="/profiles" element={<ProfilesPage />} />
