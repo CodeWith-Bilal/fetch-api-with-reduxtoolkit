@@ -6,22 +6,34 @@ const Navbar: React.FC = () => {
     <header className="bg-white shadow-sm">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-          <div style={{ fontWeight: 700, fontSize: 18 }}>BookStore Demo</div>
+          <div style={{ fontWeight: 700, fontSize: 18 }}>API Toolkit Demo</div>
           <nav style={{ display: "flex", gap: 10 }}>
             <Link to="/" style={{ color: "#0f172a", textDecoration: "none" }}>
               Home
             </Link>
             <Link
-              to="/books"
+              to="/posts"
               style={{ color: "#0f172a", textDecoration: "none" }}
             >
-              Books
+              Posts
             </Link>
             <Link
-              to="/todos"
+              to="/weather"
               style={{ color: "#0f172a", textDecoration: "none" }}
             >
-              Todos
+              Weather
+            </Link>
+            <Link
+              to="/github"
+              style={{ color: "#0f172a", textDecoration: "none" }}
+            >
+              GitHub
+            </Link>
+            <Link
+              to="/dashboard"
+              style={{ color: "#0f172a", textDecoration: "none" }}
+            >
+              Dashboard
             </Link>
           </nav>
         </div>
