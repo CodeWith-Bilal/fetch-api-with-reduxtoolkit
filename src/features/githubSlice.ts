@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export interface GitHubRepo {
   id: number;
@@ -14,52 +14,54 @@ export interface GitHubRepo {
 
 interface GitHubState {
   repos: GitHubRepo[];
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
   searchTerm: string;
 }
 
 const initialState: GitHubState = {
   repos: [],
-  status: 'idle',
+  status: "idle",
   error: null,
-  searchTerm: '',
+  searchTerm: "",
 };
 
 export const searchGitHubRepos = createAsyncThunk(
-  'github/searchRepos',
+  "github/searchRepos",
   async (query: string) => {
     if (!query.trim()) {
-      throw new Error('Search query cannot be empty');
+      throw new Error("Search query cannot be empty");
     }
-    
+
     const response = await axios.get(
-      `https://api.github.com/search/repositories?q=${encodeURIComponent(query)}&sort=stars&order=desc&per_page=20`
+      `https://api.github.com/search/repositories?q=${encodeURIComponent(
+        query
+      )}&sort=stars&order=desc&per_page=20`
     );
-    
+
     return response.data.items;
   }
 );
 
 export const fetchUserRepos = createAsyncThunk(
-  'github/fetchUserRepos',
+  "github/fetchUserRepos",
   async (username: string) => {
     const response = await axios.get(
       `https://api.github.com/users/${username}/repos?sort=updated&per_page=20`
     );
-    
+
     return response.data;
   }
 );
 
 const githubSlice = createSlice({
-  name: 'github',
+  name: "github",
   initialState,
   reducers: {
     clearRepos: (state) => {
       state.repos = [];
-      state.status = 'idle';
-      state.searchTerm = '';
+      state.status = "idle";
+      state.searchTerm = "";
     },
     setSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
@@ -68,28 +70,29 @@ const githubSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(searchGitHubRepos.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
         state.error = null;
       })
       .addCase(searchGitHubRepos.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.status = "succeeded";
         state.repos = action.payload;
       })
       .addCase(searchGitHubRepos.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message || 'Failed to search repositories';
+        state.status = "failed";
+        state.error = action.error.message || "Failed to search repositories";
       })
       .addCase(fetchUserRepos.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
         state.error = null;
       })
       .addCase(fetchUserRepos.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.status = "succeeded";
         state.repos = action.payload;
       })
       .addCase(fetchUserRepos.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message || 'Failed to fetch user repositories';
+        state.status = "failed";
+        state.error =
+          action.error.message || "Failed to fetch user repositories";
       });
   },
 });
