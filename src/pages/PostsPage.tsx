@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../app/rootReducer';
-import { AppDispatch } from '../app/store';
-import { fetchPosts, createPost, clearPosts } from '../features/postsSlice';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../app/rootReducer";
+import { AppDispatch } from "../app/store";
+import { fetchPosts, createPost, clearPosts } from "../features/postsSlice";
 
 const PostsPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { items: posts, status, error, currentPage, totalPages } = useSelector(
-    (state: RootState) => (state as any).posts
-  );
-  
-  const [newPost, setNewPost] = useState({ title: '', body: '' });
+  const {
+    items: posts,
+    status,
+    error,
+    currentPage,
+    totalPages,
+  } = useSelector((state: RootState) => (state as any).posts);
+
+  const [newPost, setNewPost] = useState({ title: "", body: "" });
   const [showCreateForm, setShowCreateForm] = useState(false);
 
   useEffect(() => {
-    if (status === 'idle') {
+    if (status === "idle") {
       dispatch(fetchPosts(1));
     }
   }, [status, dispatch]);
@@ -22,12 +26,14 @@ const PostsPage: React.FC = () => {
   const handleCreatePost = (e: React.FormEvent) => {
     e.preventDefault();
     if (newPost.title.trim() && newPost.body.trim()) {
-      dispatch(createPost({
-        title: newPost.title,
-        body: newPost.body,
-        userId: 1,
-      }));
-      setNewPost({ title: '', body: '' });
+      dispatch(
+        createPost({
+          title: newPost.title,
+          body: newPost.body,
+          userId: 1,
+        })
+      );
+      setNewPost({ title: "", body: "" });
       setShowCreateForm(false);
     }
   };
@@ -36,15 +42,15 @@ const PostsPage: React.FC = () => {
     dispatch(fetchPosts(page));
   };
 
-  if (status === 'loading') {
+  if (status === "loading") {
     return <div className="text-center py-8">Loading posts...</div>;
   }
 
-  if (status === 'failed') {
+  if (status === "failed") {
     return (
       <div className="text-center py-8">
         <p className="text-red-600">Error: {error}</p>
-        <button 
+        <button
           onClick={() => dispatch(fetchPosts(1))}
           className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
@@ -63,7 +69,7 @@ const PostsPage: React.FC = () => {
             onClick={() => setShowCreateForm(!showCreateForm)}
             className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
           >
-            {showCreateForm ? 'Cancel' : 'Create Post'}
+            {showCreateForm ? "Cancel" : "Create Post"}
           </button>
           <button
             onClick={() => dispatch(clearPosts())}
@@ -75,13 +81,18 @@ const PostsPage: React.FC = () => {
       </div>
 
       {showCreateForm && (
-        <form onSubmit={handleCreatePost} className="mb-6 p-4 border rounded-lg bg-gray-50">
+        <form
+          onSubmit={handleCreatePost}
+          className="mb-6 p-4 border rounded-lg bg-gray-50"
+        >
           <div className="mb-4">
             <input
               type="text"
               placeholder="Post title"
               value={newPost.title}
-              onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
+              onChange={(e) =>
+                setNewPost({ ...newPost, title: e.target.value })
+              }
               className="w-full p-2 border rounded"
               required
             />
@@ -106,7 +117,10 @@ const PostsPage: React.FC = () => {
 
       <div className="space-y-4">
         {posts?.map((post: any) => (
-          <div key={post.id} className="p-4 border rounded-lg bg-white shadow-sm">
+          <div
+            key={post.id}
+            className="p-4 border rounded-lg bg-white shadow-sm"
+          >
             <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
             <p className="text-gray-700 mb-2">{post.body}</p>
             <div className="text-sm text-gray-500">
@@ -125,8 +139,8 @@ const PostsPage: React.FC = () => {
               onClick={() => loadPage(page)}
               className={`px-3 py-1 rounded ${
                 page === currentPage
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
               }`}
             >
               {page}
