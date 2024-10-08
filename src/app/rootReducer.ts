@@ -9,7 +9,6 @@ const rootReducer = combineReducers({
   counter: counterReducer,
   todos: todosReducer,
   books: booksReducer,
-  // Add other reducers as needed
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
