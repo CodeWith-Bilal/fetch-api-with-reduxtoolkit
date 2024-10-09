@@ -1,4 +1,3 @@
-// src/features/userSlice.ts
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
@@ -8,7 +7,6 @@ interface User {
   name: string;
   image_url: string;
   description: string;
-  // Add other properties as needed
 }
 
 interface UserState {
