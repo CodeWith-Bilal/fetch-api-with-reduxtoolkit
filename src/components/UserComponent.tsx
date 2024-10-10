@@ -27,7 +27,6 @@ const UserComponent = () => {
     <div>
       <h1>OpenSea Data:</h1>
       {openseaData?.map((val) => {
-        // Check if the object has a valid image_url
         if (val.image_url) {
           return (
             <div key={val.id}>
@@ -37,7 +36,7 @@ const UserComponent = () => {
             </div>
           );
         }
-        return null; // Skip rendering if there is no image_url
+        return null; 
       })}
     </div>
   );
