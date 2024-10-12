@@ -1,11 +1,14 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../app/rootReducer';
+import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/rootReducer";
 
 const AnalyticsPage: React.FC = () => {
   const books = useSelector((s: RootState) => (s as any).books.items as any[]);
   const totalBooks = books.reduce((sum, b) => sum + b.quantity, 0);
-  const inventoryValue = books.reduce((sum, b) => sum + b.price * b.quantity, 0);
+  const inventoryValue = books.reduce(
+    (sum, b) => sum + b.price * b.quantity,
+    0
+  );
 
   return (
     <div>
