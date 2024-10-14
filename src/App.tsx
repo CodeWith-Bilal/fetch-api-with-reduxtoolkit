@@ -6,9 +6,9 @@ import HomePage from "./pages/HomePage";
 import BooksPage from "./pages/BooksPage";
 import TodosPage from "./pages/TodosPage";
 import ProfilesPage from "./pages/ProfilesPage";
-import BookDetailsPage from './pages/BookDetailsPage';
-import AnalyticsPage from './pages/AnalyticsPage';
-import SettingsPage from './pages/SettingsPage';
+import BookDetailsPage from "./pages/BookDetailsPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
+import SettingsPage from "./pages/SettingsPage";
 export const App = () => {
   return (
     <div
