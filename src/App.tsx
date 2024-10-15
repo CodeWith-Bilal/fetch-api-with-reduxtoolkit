@@ -6,6 +6,9 @@ import HomePage from "./pages/HomePage";
 import BooksPage from "./pages/BooksPage";
 import TodosPage from "./pages/TodosPage";
 import ProfilesPage from "./pages/ProfilesPage";
+import BookDetailsPage from './pages/BookDetailsPage';
+import AnalyticsPage from './pages/AnalyticsPage';
+import SettingsPage from './pages/SettingsPage';
 export const App = () => {
   return (
     <div
@@ -31,6 +34,9 @@ export const App = () => {
             <Route path="/books" element={<BooksPage />} />
             <Route path="/todos" element={<TodosPage />} />
             <Route path="/profiles" element={<ProfilesPage />} />
+            <Route path="/books/:id" element={<BookDetailsPage />} />
+            <Route path="/analytics" element={<AnalyticsPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
             <Route path="*" element={<HomePage />} />
           </Routes>
         </main>
