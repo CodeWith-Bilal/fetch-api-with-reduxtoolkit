@@ -1,4 +1,3 @@
-// src/components/UserComponent.tsx
 
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +6,7 @@ import { fetchUsers } from "../features/userSlice";
 import { AppDispatch } from "../app/store";
 
 const UserComponent = () => {
-  const dispatch = useDispatch<AppDispatch>(); // Provide the correct type for dispatch
+  const dispatch = useDispatch<AppDispatch>(); 
   const openseaData = useSelector((state: RootState) => state.users.data);
   const status = useSelector((state: RootState) => state.users.status);
   const error = useSelector((state: RootState) => state.users.error);
