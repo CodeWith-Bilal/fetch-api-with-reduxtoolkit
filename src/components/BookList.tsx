@@ -3,16 +3,30 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/rootReducer";
 import { removeBook, updateQuantity, updatePrice } from "../features/bookSlice";
 import { AppDispatch } from "../app/store";
+import { Link } from 'react-router-dom';
 
-const BookList: React.FC = () => {
+interface BookListProps {
+  searchTerm?: string;
+}
+
+const BookList: React.FC<BookListProps> = ({ searchTerm = '' }) => {
   const books = useSelector((s: RootState) => (s as any).books.items as any[]);
   const dispatch = useDispatch<AppDispatch>();
 
-  if (!books || books.length === 0) return <div>No books added yet.</div>;
+  const filtered = books?.filter((b) => {
+    if (!searchTerm) return true;
+    const q = searchTerm.toLowerCase();
+    return (
+      (b.title && b.title.toLowerCase().includes(q)) ||
+      (b.author && b.author.toLowerCase().includes(q))
+    );
+  });
+
+  if (!filtered || filtered.length === 0) return <div>No books match your search.</div>;
 
   return (
     <div style={{ display: "grid", gap: 12 }}>
-      {books.map((b) => (
+      {filtered.map((b) => (
         <div
           key={b.id}
           style={{
@@ -26,10 +40,8 @@ const BookList: React.FC = () => {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <strong>{b.title}</strong>
-            <small style={{ color: "#666" }}>
-              {b.author ?? "Unknown author"}
-            </small>
+            <Link to={`/books/${b.id}`} style={{ fontWeight: 700, color: '#0f172a', textDecoration: 'none' }}>{b.title}</Link>
+            <small style={{ color: "#666" }}>{b.author ?? "Unknown author"}</small>
             <div style={{ marginTop: 6 }}>
               <label style={{ marginRight: 8 }}>Qty:</label>
               <input
