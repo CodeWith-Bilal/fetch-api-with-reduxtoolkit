@@ -3,8 +3,8 @@ import userReducer from "../features/userSlice";
 import counterReducer from "../features/counterSlice";
 import todosReducer from "../features/todoSlice";
 import booksReducer from "../features/bookSlice";
-import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
 
 const reducers = combineReducers({
   users: userReducer,
@@ -14,9 +14,9 @@ const reducers = combineReducers({
 });
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-  whitelist: ['todos', 'books'], // persist only todos and books
+  whitelist: ["todos", "books"], // persist only todos and books
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
