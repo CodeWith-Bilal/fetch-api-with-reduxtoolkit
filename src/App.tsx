@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage';
 import BooksPage from './pages/BooksPage';
 import TodosPage from './pages/TodosPage';
 import ProfilesPage from './pages/ProfilesPage';
-function App() {
+export const App = () => {
   return (
     <div style={{ background: '#f1f5f9', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <BrowserRouter>
