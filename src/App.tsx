@@ -1,72 +1,28 @@
 import "./App.css";
-import CounterExample from "./components/CounterExample";
-import ProfileList from "./components/ProfileList";
-import PropsExample from "./components/PropsExample";
-import UserComponent from "./components/UserComponent";
-import TodoInput from "./components/TodoInput";
-import TodoList from "./components/TodoList";
-import BookForm from "./components/BookForm";
-import BookList from "./components/BookList";
-
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import BooksPage from './pages/BooksPage';
+import TodosPage from './pages/TodosPage';
+import ProfilesPage from './pages/ProfilesPage';
 function App() {
   return (
-    <div style={{ padding: 16 }}>
-      <h1>Redux Toolkit Crash Course Demo</h1>
-      <section style={{ marginBottom: 16 }}>
-        <CounterExample />
-      </section>
-
-      <section style={{ marginBottom: 16 }}>
-        <h2>OpenSea Profiles (from store)</h2>
-        <ProfileList />
-      </section>
-
-      <section style={{ marginBottom: 16 }}>
-        <h2>Props example</h2>
-        <PropsExample title="Hello from Props" count={3} />
-      </section>
-
-      <section>
-        <h2>Original UserComponent</h2>
-        <UserComponent />
-      </section>
-
-      <section style={{ marginTop: 24 }}>
-        <h2>Todo List (Redux-backed)</h2>
-        <div
-          style={{
-            maxWidth: 720,
-            background: "#f8fafc",
-            padding: 12,
-            borderRadius: 8,
-          }}
-        >
-          <div style={{ marginBottom: 12 }}>
-            {/* Todo input and list components */}
-            <TodoInput />
-          </div>
-          <TodoList />
-        </div>
-      </section>
-
-      <section style={{ marginTop: 24 }}>
-        <h2>Book Inventory</h2>
-        <div
-          style={{
-            maxWidth: 720,
-            background: "#fefefe",
-            padding: 12,
-            borderRadius: 8,
-          }}
-        >
-          <div style={{ marginBottom: 12 }}>
-            <BookForm />
-          </div>
-          <BookList />
-        </div>
-      </section>
+    <div style={{ background: '#f1f5f9', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <BrowserRouter>
+        <Navbar />
+        <main style={{ maxWidth: 1024, margin: '20px auto', padding: '0 16px', flex: 1 }}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/books" element={<BooksPage />} />
+            <Route path="/todos" element={<TodosPage />} />
+            <Route path="/profiles" element={<ProfilesPage />} />
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
 
-export default App;
