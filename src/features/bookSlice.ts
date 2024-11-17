@@ -5,7 +5,7 @@ export interface Book {
   title: string;
   author?: string;
   quantity: number;
-  price: number; // in whatever currency
+  price: number; 
 }
 
 interface BookState {
