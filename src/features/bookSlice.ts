@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Book {
   id: string;
@@ -17,7 +17,7 @@ const initialState: BookState = {
 };
 
 const bookSlice = createSlice({
-  name: 'books',
+  name: "books",
   initialState,
   reducers: {
     addBook(state, action: PayloadAction<Book>) {
@@ -26,7 +26,10 @@ const bookSlice = createSlice({
     removeBook(state, action: PayloadAction<string>) {
       state.items = state.items.filter((b) => b.id !== action.payload);
     },
-    updateQuantity(state, action: PayloadAction<{ id: string; quantity: number }>) {
+    updateQuantity(
+      state,
+      action: PayloadAction<{ id: string; quantity: number }>
+    ) {
       const b = state.items.find((it) => it.id === action.payload.id);
       if (b) b.quantity = action.payload.quantity;
     },
@@ -40,5 +43,6 @@ const bookSlice = createSlice({
   },
 });
 
-export const { addBook, removeBook, updateQuantity, updatePrice, clearBooks } = bookSlice.actions;
+export const { addBook, removeBook, updateQuantity, updatePrice, clearBooks } =
+  bookSlice.actions;
 export default bookSlice.reducer;
