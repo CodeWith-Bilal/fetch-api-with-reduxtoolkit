@@ -6,6 +6,8 @@ import PropsExample from './components/PropsExample';
 import UserComponent from './components/UserComponent';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
+import BookForm from './components/BookForm';
+import BookList from './components/BookList';
 
 function App() {
   return (
@@ -38,6 +40,16 @@ function App() {
             <TodoInput />
           </div>
           <TodoList />
+        </div>
+      </section>
+
+      <section style={{ marginTop: 24 }}>
+        <h2>Book Inventory</h2>
+        <div style={{ maxWidth: 720, background: '#fefefe', padding: 12, borderRadius: 8 }}>
+          <div style={{ marginBottom: 12 }}>
+            <BookForm />
+          </div>
+          <BookList />
         </div>
       </section>
     </div>
