@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "../features/userSlice";
 import counterReducer from "../features/counterSlice";
 import todosReducer from "../features/todoSlice";
+import booksReducer from "../features/bookSlice";
 
 const store = configureStore({
   reducer: {
     users: userReducer,
     counter: counterReducer,
     todos: todosReducer,
+  books: booksReducer,
     // Add other reducers as needed
   },
 });
