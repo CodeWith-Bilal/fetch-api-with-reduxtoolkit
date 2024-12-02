@@ -4,6 +4,8 @@ import CounterExample from './components/CounterExample';
 import ProfileList from './components/ProfileList';
 import PropsExample from './components/PropsExample';
 import UserComponent from './components/UserComponent';
+import TodoInput from './components/TodoInput';
+import TodoList from './components/TodoList';
 
 function App() {
   return (
@@ -26,6 +28,17 @@ function App() {
       <section>
         <h2>Original UserComponent</h2>
         <UserComponent />
+      </section>
+      
+      <section style={{ marginTop: 24 }}>
+        <h2>Todo List (Redux-backed)</h2>
+        <div style={{ maxWidth: 720, background: '#f8fafc', padding: 12, borderRadius: 8 }}>
+          <div style={{ marginBottom: 12 }}>
+            {/* Todo input and list components */}
+            <TodoInput />
+          </div>
+          <TodoList />
+        </div>
       </section>
     </div>
   );
