@@ -2,7 +2,6 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from '../features/userSlice';
-// Update the import path if the file is named differently or located elsewhere
 import counterReducer from '../features/counterSlice';
 
 const store = configureStore({
