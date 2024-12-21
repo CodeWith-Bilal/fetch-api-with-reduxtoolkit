@@ -3,7 +3,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from '../features/userSlice';
 // Update the import path if the file is named differently or located elsewhere
-// Example: If the file is named counterSlice.tsx or located in another folder, update accordingly
 import counterReducer from '../features/counterSlice';
 
 const store = configureStore({
